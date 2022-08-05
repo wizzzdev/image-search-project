@@ -15,7 +15,13 @@ const SearchPage = () => {
       }));
   }
 
-  const debouncedOnChange: ChangeEventHandler<HTMLInputElement>  = useMemo(() => _.debounce(onChange, 300), []);
+  /* 
+    use debounce to prevent sending requests everytime the user types something.
+    it provides some time for the user to stop typing
+
+    useMemo is better for performance than useCallback in this case.
+  */
+  const debouncedOnChange: ChangeEventHandler<HTMLInputElement> = useMemo(() => _.debounce(onChange, 300), []);
 
   return (
     <>
